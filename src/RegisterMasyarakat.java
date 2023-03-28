@@ -25,6 +25,7 @@ public class RegisterMasyarakat extends javax.swing.JFrame {
     public RegisterMasyarakat() {
         initComponents();
         centerFrame();
+        setSize(852, 664);
     }
 
     /**
@@ -36,117 +37,91 @@ public class RegisterMasyarakat extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txt_nik = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txt_nama = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         txt_username = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         txt_telp = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         btn_register = new javax.swing.JButton();
         txt_password = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel1.setText("Register");
-
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Ubuntu Light", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("x");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 30, 40));
 
-        jLabel2.setText("Nik :");
+        txt_nik.setBackground(new java.awt.Color(217, 217, 217));
+        txt_nik.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_nik.setBorder(null);
+        txt_nik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nikActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_nik, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 310, 30));
 
-        jLabel3.setText("Nama :");
+        txt_nama.setBackground(new java.awt.Color(217, 217, 217));
+        txt_nama.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_nama.setBorder(null);
+        txt_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_namaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 310, 30));
 
-        jLabel4.setText("Username :");
+        txt_username.setBackground(new java.awt.Color(217, 217, 217));
+        txt_username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_username.setBorder(null);
+        txt_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_usernameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 310, 30));
 
-        jLabel5.setText("Telepon :");
+        txt_telp.setBackground(new java.awt.Color(217, 217, 217));
+        txt_telp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_telp.setBorder(null);
+        txt_telp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        getContentPane().add(txt_telp, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 310, 30));
 
-        jLabel6.setText("Password :");
-
-        btn_register.setBackground(new java.awt.Color(8, 255, 0));
-        btn_register.setText("Register");
+        btn_register.setBackground(new java.awt.Color(51, 153, 255));
+        btn_register.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_register.setForeground(new java.awt.Color(255, 255, 255));
+        btn_register.setText("Register Akun");
+        btn_register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_registerActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 563, 270, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(btn_register, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 166, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(txt_nik)
-                            .addComponent(jLabel2)
-                            .addComponent(txt_nama)
-                            .addComponent(txt_username)
-                            .addComponent(txt_telp)
-                            .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_nik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_telp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addGap(5, 5, 5)
-                .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addGap(12, 12, 12)
-                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_register)
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
+        txt_password.setBackground(new java.awt.Color(217, 217, 217));
+        txt_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_password.setBorder(null);
+        txt_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_passwordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 310, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/RegisterMasyarakat.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 870, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,6 +144,10 @@ public class RegisterMasyarakat extends javax.swing.JFrame {
         String password = new String(txt_password.getPassword());
         String telepon = txt_telp.getText();
 
+        if (nik.isEmpty() || nama.isEmpty() || telepon.isEmpty() || username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Lengkapi Data Anda", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if (!isNikUnique(nik)) {
             JOptionPane.showMessageDialog(this, "NIK sudah digunakan!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -203,6 +182,22 @@ public class RegisterMasyarakat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btn_registerActionPerformed
+
+    private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usernameActionPerformed
+
+    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_passwordActionPerformed
+
+    private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_namaActionPerformed
+
+    private void txt_nikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nikActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nikActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,12 +241,7 @@ public class RegisterMasyarakat extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_register;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txt_nama;
     private javax.swing.JTextField txt_nik;
     private javax.swing.JPasswordField txt_password;

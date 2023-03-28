@@ -18,8 +18,8 @@ public class Futama extends javax.swing.JFrame {
      */
     public Futama() {
         initComponents();
-        centerFrame();
-
+        centerFrame();    
+        setSize(587, 364);
     }
 
     /**
@@ -31,8 +31,8 @@ public class Futama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        iniLogo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        iniLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -41,8 +41,22 @@ public class Futama extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
         setForeground(new java.awt.Color(1, 1, 1));
+        setMaximumSize(new java.awt.Dimension(577, 324));
+        setMinimumSize(new java.awt.Dimension(577, 324));
+        setPreferredSize(new java.awt.Dimension(577, 324));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        iniLogo.setIcon(new javax.swing.ImageIcon("/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/image/logo.png")); // NOI18N
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Next");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 110, 30));
+
+        iniLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/HalamanUtama.png"))); // NOI18N
         iniLogo.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 iniLogoAncestorAdded(evt);
@@ -52,15 +66,7 @@ public class Futama extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-
-        jButton1.setBackground(new java.awt.Color(1, 209, 5));
-        jButton1.setForeground(new java.awt.Color(254, 254, 254));
-        jButton1.setText("Client Area");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        getContentPane().add(iniLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, -7, 590, 310));
 
         jMenuBar1.setBackground(javax.swing.UIManager.getDefaults().getColor("ComboBox.buttonShadow"));
         jMenuBar1.setBorder(null);
@@ -85,45 +91,26 @@ public class Futama extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(iniLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(204, 204, 204))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(214, 214, 214))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(iniLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(55, 55, 55))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        FormLogin login = new FormLogin();
-        login.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void iniLogoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_iniLogoAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_iniLogoAncestorAdded
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         LoginMasyarakat LoginM = new LoginMasyarakat();
         LoginM.setVisible(true);
+        this.dispose();
+        setSize(577, 324);
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FormLogin login = new FormLogin();
+        login.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

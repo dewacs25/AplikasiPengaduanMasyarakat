@@ -15,7 +15,7 @@ public class HomeMasyarakat extends javax.swing.JFrame {
     
     public HomeMasyarakat() {
         initComponents();
-       
+       setSize(1366, 768);
     }
 
     /**

@@ -19,7 +19,7 @@ public class Koneksi {
         try {
             String url = "jdbc:mysql://localhost:3306/java_aplikasi_pengaduan"; //url database
             String user = "root"; //user database
-            String pass = "dewa"; //password database
+            String pass = ""; //password database
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             mysqlconfig = DriverManager.getConnection(url, user, pass);
         } catch (Exception e) {
