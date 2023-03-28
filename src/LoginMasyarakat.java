@@ -31,9 +31,10 @@ public class LoginMasyarakat extends javax.swing.JFrame {
         initComponents();
         centerFrame();
         setSize(852, 664);
-        
+        super.setResizable(false);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +53,7 @@ public class LoginMasyarakat extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_username.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -140,12 +142,12 @@ public class LoginMasyarakat extends javax.swing.JFrame {
                 String dbPassword = rs.getString("password");
                 if (dbPassword.equals(password)) {
                     JOptionPane.showMessageDialog(this, "Login berhasil!");
-                     HomeMasyarakat homeM = new HomeMasyarakat();
-                     SessionMasyarakat.setUsername(rs.getString("username"));
-                     homeM.setVisible(true);
-                     this.dispose();
+                    HomeMasyarakat homeM = new HomeMasyarakat();
+                    SessionMasyarakat.setUsername(rs.getString("username"));
+                    homeM.setVisible(true);
+                    this.dispose();
                 }
-               
+
             } else {
                 // Jika data tidak ditemukan
                 JOptionPane.showMessageDialog(null, "Username atau password salah!");

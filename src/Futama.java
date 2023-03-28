@@ -2,6 +2,9 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,6 +23,8 @@ public class Futama extends javax.swing.JFrame {
         initComponents();
         centerFrame();    
         setSize(587, 364);
+        super.setResizable(false);
+        
     }
 
     /**
@@ -31,6 +36,9 @@ public class Futama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         iniLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -45,6 +53,18 @@ public class Futama extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(577, 324));
         setPreferredSize(new java.awt.Dimension(577, 324));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("Asesi : Rm HaudyAl-Kautsar");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setText("Asesor : Septian Arianda S.kom ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, -1));
+
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Aplikasi Pengaduan Masyarakat ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Next");
@@ -66,7 +86,7 @@ public class Futama extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        getContentPane().add(iniLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, -7, 590, 310));
+        getContentPane().add(iniLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, -7, 570, 310));
 
         jMenuBar1.setBackground(javax.swing.UIManager.getDefaults().getColor("ComboBox.buttonShadow"));
         jMenuBar1.setBorder(null);
@@ -150,6 +170,9 @@ public class Futama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iniLogo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
