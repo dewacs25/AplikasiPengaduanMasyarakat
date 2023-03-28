@@ -8,14 +8,14 @@
  * @author haudy
  */
 public class SessionMasyarakat {
-    private static String username;
+    private static String id_masyarakat;
     
-    public static String getUsername() {
-        return username;
+    public static String getIdMasyarakat() {
+        return id_masyarakat;
     }
     
-     public static void setUsername(String username) {
-        SessionMasyarakat.username = username;
+     public static void setIdMasyarakat(String idMasyarakat) {
+        SessionMasyarakat.id_masyarakat = idMasyarakat;
     }
     
 }

@@ -143,7 +143,7 @@ public class LoginMasyarakat extends javax.swing.JFrame {
                 if (dbPassword.equals(password)) {
                     JOptionPane.showMessageDialog(this, "Login berhasil!");
                     HomeMasyarakat homeM = new HomeMasyarakat();
-                    SessionMasyarakat.setUsername(rs.getString("username"));
+                    SessionMasyarakat.setIdMasyarakat(rs.getString("id_masyarakat"));
                     homeM.setVisible(true);
                     this.dispose();
                 }

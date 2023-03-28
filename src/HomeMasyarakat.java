@@ -1,8 +1,11 @@
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author haudy
@@ -12,7 +15,6 @@ public class HomeMasyarakat extends javax.swing.JFrame {
     /**
      * Creates new form HomeMasyarakat
      */
-    
     public HomeMasyarakat() {
         initComponents();
         setSize(1366, 768);
@@ -28,24 +30,55 @@ public class HomeMasyarakat extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        button1 = new java.awt.Button();
+        btnPengaduan = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1366, 768));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/chat.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 110, 80));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 320, 360, 290));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pesanHitam.png"))); // NOI18N
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 100, 90));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setText("Membuat Laporan");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
+        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel2.setText("Buat Pengaduan");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 530, 190, 30));
 
-        button1.setBackground(new java.awt.Color(0, 0, 0));
-        getContentPane().add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 360, 290));
+        btnPengaduan.setForeground(new java.awt.Color(1, 1, 1));
+        btnPengaduan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPengaduan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPengaduanMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnPengaduan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 360, 290));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bgHome.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
@@ -53,6 +86,30 @@ public class HomeMasyarakat extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPengaduanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPengaduanMouseClicked
+        FormPengaduanMasyarakat pengaduanM = new FormPengaduanMasyarakat();
+        pengaduanM.setVisible(true);
+    }//GEN-LAST:event_btnPengaduanMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        FormPengaduanMasyarakat pengaduanM = new FormPengaduanMasyarakat();
+        pengaduanM.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        FormPengaduanMasyarakat pengaduanM = new FormPengaduanMasyarakat();
+        pengaduanM.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        HistoryPengaduan pengaduanH = new HistoryPengaduan();
+        pengaduanH.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -90,9 +147,10 @@ public class HomeMasyarakat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
+    private javax.swing.JLabel btnPengaduan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
