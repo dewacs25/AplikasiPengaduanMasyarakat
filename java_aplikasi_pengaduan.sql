@@ -34,7 +34,7 @@ CREATE TABLE `masyarakat` (
   `nik` varchar(16) NOT NULL,
   `password` varchar(50) NOT NULL,
   `telp` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `masyarakat`
@@ -55,9 +55,9 @@ CREATE TABLE `pengaduan` (
   `tgl_pengaduan` date NOT NULL,
   `id_masyarakat` int NOT NULL,
   `isi_pengaduan` text NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` enum('0','proses','selesai') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengaduan`
@@ -79,7 +79,7 @@ CREATE TABLE `petugas` (
   `password` varchar(100) NOT NULL,
   `telp` varchar(13) NOT NULL,
   `level` enum('admin','petugas') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `petugas`
