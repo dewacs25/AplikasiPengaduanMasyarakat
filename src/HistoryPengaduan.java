@@ -29,7 +29,11 @@ public class HistoryPengaduan extends javax.swing.JFrame {
         initComponents();
         setSize(911, 686);
         load_table1();
+        
+        
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
