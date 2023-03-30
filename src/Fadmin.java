@@ -28,6 +28,7 @@ public class Fadmin extends javax.swing.JFrame {
     private String namaGambar;
     private String lokasiSimpan = "src/imgPengaduan/";
     private String idPengaduan;
+    private String idTanggapan;
     private String status;
 
     public Fadmin() {
@@ -42,7 +43,7 @@ public class Fadmin extends javax.swing.JFrame {
     }
 
     private void cekBtn() {
-  
+
         btnUnverified.setVisible(false);
         btnAccept.setVisible(false);
 
@@ -56,6 +57,11 @@ public class Fadmin extends javax.swing.JFrame {
             btnUnverified.setVisible(false);
             btnR.setVisible(false);
             btnAccept.setVisible(true);
+        } else if ("prose".equals(status)) {
+            btnVerified.setVisible(true);
+            btnUnverified.setVisible(false);
+            btnAccept.setVisible(false);
+            btnR.setVisible(true);
         } else {
             btnVerified.setVisible(true);
             btnR.setVisible(true);
@@ -148,6 +154,7 @@ public class Fadmin extends javax.swing.JFrame {
         txt_isitanggapan = new javax.swing.JTextArea();
         btnKirimTanggapan = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         isiLaporan = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
@@ -217,6 +224,14 @@ public class Fadmin extends javax.swing.JFrame {
         jLabel4.setText("Berikan Tanggapan :");
         panelPengaduan.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 411, 154, -1));
 
+        jButton6.setText("Hapus Tanggapan");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, -1, -1));
+
         isiLaporan.setColumns(20);
         isiLaporan.setRows(5);
         jScrollPane3.setViewportView(isiLaporan);
@@ -239,9 +254,14 @@ public class Fadmin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableTanggapan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTanggapanMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tableTanggapan);
 
-        panelPengaduan.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 485, 382, 143));
+        panelPengaduan.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 485, 382, 100));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Tanggapan :");
@@ -278,6 +298,11 @@ public class Fadmin extends javax.swing.JFrame {
         panelPengaduan.add(btnVerified, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 592, 105, -1));
 
         btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
         panelPengaduan.add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 100, -1));
 
         btnR.setBackground(new java.awt.Color(223, 223, 223));
@@ -517,6 +542,54 @@ public class Fadmin extends javax.swing.JFrame {
         load_table1();
     }//GEN-LAST:event_btnRActionPerformed
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+
+        if (idPengaduan == null) {
+            JOptionPane.showMessageDialog(this, "Pilih Data Laporan Terlebihdahulu");
+            return;
+        }
+
+        try {
+            String sql = "UPDATE pengaduan SET status = 'proses' WHERE id_pengaduan='" + idPengaduan + "'";
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil");
+            status = "proses";
+            cekBtn();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal" + e.getMessage());
+        }
+        load_table1();
+
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void tableTanggapanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTanggapanMouseClicked
+        int baris = tableTanggapan.rowAtPoint(evt.getPoint());
+        idTanggapan = tableIsiLaporan.getValueAt(baris, 1).toString();
+
+    }//GEN-LAST:event_tableTanggapanMouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (idTanggapan == null) {
+            JOptionPane.showMessageDialog(this, "Pilih Data Tanggapan Terlebih dahlu");
+            return;
+        }
+        try {
+            String sql = "DELETE FROM tanggapan WHERE id_tanggapan=?";
+            Connection conn = Koneksi.configDB();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, idTanggapan);
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(null, "Tanggapan Terhapus");
+                load_table2();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -565,6 +638,7 @@ public class Fadmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

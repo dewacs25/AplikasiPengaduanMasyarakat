@@ -2,6 +2,8 @@
 import java.awt.Image;
 import java.io.File;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,7 +31,7 @@ public class HistoryPengaduan extends javax.swing.JFrame {
         initComponents();
         setSize(911, 686);
         load_table1();
-        
+        load_table2();
         
         
     }
@@ -48,6 +50,9 @@ public class HistoryPengaduan extends javax.swing.JFrame {
         btnHapusPengaduan = new javax.swing.JToggleButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         isiLaporan = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableTanggapan = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableHistory = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -74,6 +79,25 @@ public class HistoryPengaduan extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 400, 270));
 
+        tableTanggapan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tableTanggapan);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 330, 130));
+
+        jLabel3.setForeground(new java.awt.Color(4, 2, 2));
+        jLabel3.setText("Tanggapan :");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+
         tableHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -93,7 +117,7 @@ public class HistoryPengaduan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableHistory);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 330, 450));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 330, 110));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,6 +157,7 @@ public class HistoryPengaduan extends javax.swing.JFrame {
                 Image img = gambar.getImage().getScaledInstance(230, 170, Image.SCALE_SMOOTH);
                 gambar = new ImageIcon(img);
                 fotoLaporan.setIcon(gambar);
+                load_table2();
             }
 
         } catch (Exception e) {
@@ -246,14 +271,49 @@ public class HistoryPengaduan extends javax.swing.JFrame {
         }
 
     }
+    
+     private void load_table2() {
+        DefaultTableModel model1 = new DefaultTableModel();
+        tableTanggapan.setModel(model1);
+        model1.addColumn("No");
+        model1.addColumn("id"); // Menambahkan kolom "id" ke dalam model tabel
+        model1.addColumn("Tanggapan");
+        model1.addColumn("Tanggal Pengiriman");
+
+        // Menampilkan data database kedalam tabel
+        try {
+            int no = 1;
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            String sql = "SELECT tanggapan.*, pengaduan.* FROM tanggapan JOIN pengaduan ON tanggapan.id_pengaduan = pengaduan.id_pengaduan WHERE pengaduan.id_pengaduan=?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, idPengaduan);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                model1.addRow(new Object[]{no++, rs.getString("id_tanggapan"), rs.getString("tanggapan"), rs.getString("tgl_tanggapan")});
+            }
+            tableTanggapan.setModel(model1);
+
+            // Menyembunyikan kolom "id_pengaduan"
+            TableColumnModel tcm2 = tableTanggapan.getColumnModel();
+            tcm2.getColumn(1).setMinWidth(0);
+            tcm2.getColumn(1).setMaxWidth(0);
+            tcm2.getColumn(1).setWidth(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnHapusPengaduan;
     private javax.swing.JLabel fotoLaporan;
     private javax.swing.JTextArea isiLaporan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tableHistory;
+    private javax.swing.JTable tableTanggapan;
     // End of variables declaration//GEN-END:variables
 }
