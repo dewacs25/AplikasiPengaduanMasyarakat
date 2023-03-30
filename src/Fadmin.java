@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.sql.ResultSet;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -27,6 +28,7 @@ public class Fadmin extends javax.swing.JFrame {
     private String namaGambar;
     private String lokasiSimpan = "src/imgPengaduan/";
     private String idPengaduan;
+    private String status;
 
     public Fadmin() {
         initComponents();
@@ -35,6 +37,29 @@ public class Fadmin extends javax.swing.JFrame {
         iniPanel();
         panelDashboard.setVisible(true);
         load_table1();
+        cekBtn();
+
+    }
+
+    private void cekBtn() {
+  
+        btnUnverified.setVisible(false);
+        btnAccept.setVisible(false);
+
+        if ("selesai".equals(status)) {
+            btnVerified.setVisible(false);
+            btnUnverified.setVisible(true);
+            btnR.setVisible(false);
+
+        } else if ("ditolak".equals(status)) {
+            btnVerified.setVisible(false);
+            btnUnverified.setVisible(false);
+            btnR.setVisible(false);
+            btnAccept.setVisible(true);
+        } else {
+            btnVerified.setVisible(true);
+            btnR.setVisible(true);
+        }
 
     }
 
@@ -131,8 +156,10 @@ public class Fadmin extends javax.swing.JFrame {
         tableTanggapan = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnUnverified = new javax.swing.JButton();
+        btnVerified = new javax.swing.JButton();
+        btnAccept = new javax.swing.JButton();
+        btnR = new javax.swing.JButton();
         panelDashboard = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -145,6 +172,7 @@ public class Fadmin extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelPengaduan.setBackground(new java.awt.Color(58, 58, 58));
+        panelPengaduan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableIsiLaporan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,13 +192,18 @@ public class Fadmin extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableIsiLaporan);
 
+        panelPengaduan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 70, -1, 323));
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Data Pengaduan Masyarakat");
+        panelPengaduan.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 35, 323, -1));
 
         txt_isitanggapan.setColumns(20);
         txt_isitanggapan.setRows(5);
         jScrollPane2.setViewportView(txt_isitanggapan);
+
+        panelPengaduan.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 439, 452, 65));
 
         btnKirimTanggapan.setText("Kirim ");
         btnKirimTanggapan.addActionListener(new java.awt.event.ActionListener() {
@@ -178,16 +211,22 @@ public class Fadmin extends javax.swing.JFrame {
                 btnKirimTanggapanActionPerformed(evt);
             }
         });
+        panelPengaduan.add(btnKirimTanggapan, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 516, 105, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Berikan Tanggapan :");
+        panelPengaduan.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 411, 154, -1));
 
         isiLaporan.setColumns(20);
         isiLaporan.setRows(5);
         jScrollPane3.setViewportView(isiLaporan);
 
+        panelPengaduan.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 145, 440, 93));
+
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Isi Pengaduan :");
+        panelPengaduan.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 101, 106, 32));
+        panelPengaduan.add(fotoLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 256, 230, 170));
 
         tableTanggapan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,84 +241,54 @@ public class Fadmin extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tableTanggapan);
 
+        panelPengaduan.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 485, 382, 143));
+
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Tanggapan :");
+        panelPengaduan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 457, 110, -1));
 
         jButton5.setBackground(new java.awt.Color(255, 0, 51));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Hapus");
+        jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
+        panelPengaduan.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 592, 93, -1));
 
-        jButton6.setBackground(new java.awt.Color(102, 255, 0));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Verified");
+        btnUnverified.setBackground(new java.awt.Color(255, 0, 0));
+        btnUnverified.setForeground(new java.awt.Color(255, 245, 245));
+        btnUnverified.setText("Unverifeid");
+        btnUnverified.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnverifiedActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnUnverified, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 100, -1));
 
-        jButton7.setText("jButton7");
+        btnVerified.setBackground(new java.awt.Color(102, 255, 0));
+        btnVerified.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerified.setText("Verified");
+        btnVerified.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerifiedActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnVerified, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 592, 105, -1));
 
-        javax.swing.GroupLayout panelPengaduanLayout = new javax.swing.GroupLayout(panelPengaduan);
-        panelPengaduan.setLayout(panelPengaduanLayout);
-        panelPengaduanLayout.setHorizontalGroup(
-            panelPengaduanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPengaduanLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(panelPengaduanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPengaduanLayout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPengaduanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane2))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnKirimTanggapan, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(panelPengaduanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fotoLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-        panelPengaduanLayout.setVerticalGroup(
-            panelPengaduanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPengaduanLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPengaduanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelPengaduanLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnKirimTanggapan)
-                        .addGap(42, 42, 42)
-                        .addGroup(panelPengaduanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6)
-                            .addComponent(jButton7)))
-                    .addGroup(panelPengaduanLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(fotoLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(160, Short.MAX_VALUE))
-        );
+        btnAccept.setText("Accept");
+        panelPengaduan.add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 100, -1));
+
+        btnR.setBackground(new java.awt.Color(223, 223, 223));
+        btnR.setForeground(new java.awt.Color(254, 254, 254));
+        btnR.setText("Reject");
+        btnR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 592, 98, -1));
 
         getContentPane().add(panelPengaduan, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 1070, 760));
 
@@ -361,6 +370,9 @@ public class Fadmin extends javax.swing.JFrame {
                 Image img = gambar.getImage().getScaledInstance(230, 170, Image.SCALE_SMOOTH);
                 gambar = new ImageIcon(img);
                 fotoLaporan.setIcon(gambar);
+                status = res.getString("status");
+
+                cekBtn();
             }
 
         } catch (Exception e) {
@@ -401,8 +413,109 @@ public class Fadmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKirimTanggapanActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+
+        if (idPengaduan == null) {
+            JOptionPane.showMessageDialog(this, "Pilih Data Laporan Terlebihdahulu");
+            return;
+        }
+        try {
+            String sql = "select * from pengaduan where id_pengaduan = '" + idPengaduan + "'";
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            if (res.next()) {
+                if (res.getString(6) == "selesai") {
+                    JOptionPane.showMessageDialog(this, "Pengaduan Anda Sudah Diterima", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                } else {
+                    try {
+                        File fileGambar = new File(lokasiSimpan + File.separator + namaGambar);
+                        if (fileGambar.exists()) {
+                            fileGambar.delete();
+                            System.out.println("Gambar Dihapus");
+                        } else {
+                            System.out.println("Gambar Tidak Ditemukan");
+                        }
+
+                        String sqlDelete = "delete from pengaduan where id_pengaduan='" + idPengaduan + "'";
+                        java.sql.PreparedStatement pst = conn.prepareStatement(sqlDelete);
+                        pst.execute();
+                        JOptionPane.showMessageDialog(this, "berhasil di hapus");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+                    load_table1();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnVerifiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifiedActionPerformed
+
+        if (idPengaduan == null) {
+            JOptionPane.showMessageDialog(this, "Pilih Data Laporan Terlebihdahulu");
+            return;
+        }
+
+        try {
+            String sql = "UPDATE pengaduan SET status = 'selesai' WHERE id_pengaduan='" + idPengaduan + "'";
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil");
+            status = "selesai";
+            cekBtn();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal" + e.getMessage());
+        }
+        load_table1();
+
+
+    }//GEN-LAST:event_btnVerifiedActionPerformed
+
+    private void btnUnverifiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnverifiedActionPerformed
+        if (idPengaduan == null) {
+            JOptionPane.showMessageDialog(this, "Pilih Data Laporan Terlebihdahulu");
+            return;
+        }
+
+        try {
+            String sql = "UPDATE pengaduan SET status = 'proses' WHERE id_pengaduan='" + idPengaduan + "'";
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil");
+            status = "proses";
+            cekBtn();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal" + e.getMessage());
+        }
+        load_table1();
+    }//GEN-LAST:event_btnUnverifiedActionPerformed
+
+    private void btnRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRActionPerformed
+        if (idPengaduan == null) {
+            JOptionPane.showMessageDialog(this, "Pilih Data Laporan Terlebihdahulu");
+            return;
+        }
+
+        try {
+            String sql = "UPDATE pengaduan SET status = 'ditolak' WHERE id_pengaduan='" + idPengaduan + "'";
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil Ditolak");
+            status = "ditolak";
+            cekBtn();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal" + e.getMessage());
+        }
+        load_table1();
+    }//GEN-LAST:event_btnRActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,7 +553,11 @@ public class Fadmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccept;
     private javax.swing.JToggleButton btnKirimTanggapan;
+    private javax.swing.JButton btnR;
+    private javax.swing.JButton btnUnverified;
+    private javax.swing.JButton btnVerified;
     private javax.swing.JLabel fotoLaporan;
     private javax.swing.JTextArea isiLaporan;
     private javax.swing.JButton jButton1;
@@ -448,8 +565,6 @@ public class Fadmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

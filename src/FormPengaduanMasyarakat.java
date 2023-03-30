@@ -25,7 +25,7 @@ public class FormPengaduanMasyarakat extends javax.swing.JFrame {
      * Creates new form FormPengaduanMasyarakat
      */
     private String namaGambar;
-    private String lokasiSimpan = "src/imgPengaduan/";
+    private final String lokasiSimpan = "src/imgPengaduan/";
 
     public FormPengaduanMasyarakat() {
         initComponents();
