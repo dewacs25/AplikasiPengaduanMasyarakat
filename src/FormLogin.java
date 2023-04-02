@@ -7,7 +7,6 @@
  *
  * @author haudy
  */
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +21,7 @@ public class FormLogin extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     public FormLogin() throws SQLException {
         initComponents();
         conn = Koneksi.configDB();
@@ -121,33 +120,26 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usernameActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        
+
         String username = txt_username.getText();
         String password = String.valueOf(txt_password.getPassword());
-        
+
         String query = "SELECT * FROM petugas WHERE username=? AND password=?";
-        
+
         try {
             pst = conn.prepareStatement(query);
             pst.setString(1, username);
             pst.setString(2, password);
             rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 // Jika data ditemukan
                 String level = rs.getString("level");
                 SessionPetugas.setIdPetugas(rs.getString("id_petugas"));
-                if (level.equals("admin")) {
-                    // Tampilkan form admin
-                    Fadmin fadmin = new Fadmin();
-                    fadmin.setVisible(true);
-                    this.dispose();
-                } else if (level.equals("petugas")) {
-                    // Tampilkan form petugas
-                    Fpetugas petugasForm = new Fpetugas();
-                    petugasForm.setVisible(true);
-                    this.dispose();
-                }
+                SessionPetugas.setLevel(level);
+                Fadmin fadmin = new Fadmin();
+                fadmin.setVisible(true);
+                this.dispose();
             } else {
                 // Jika data tidak ditemukan
                 JOptionPane.showMessageDialog(null, "Username atau password salah!");
@@ -155,7 +147,7 @@ public class FormLogin extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
