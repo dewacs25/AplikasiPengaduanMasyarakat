@@ -5,9 +5,12 @@
         <group>
             <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/RegisterMasyarakat.java</file>
             <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/Fadmin.java</file>
+            <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/DetaiReport.java</file>
             <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/FormLogin.java</file>
+            <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/SessionMasyarakat.java</file>
             <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/FTambahMasyarakat.java</file>
             <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/SessionPetugas.java</file>
+            <file>file:/home/haudy/dev/java/AplikasiPengaduanMasyarakat/src/SessionFlash.java</file>
         </group>
     </open-files>
 </project-private>

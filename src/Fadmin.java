@@ -34,6 +34,7 @@ public class Fadmin extends javax.swing.JFrame {
     private String idMasyarakat;
     private String level = SessionPetugas.getLevel();
     private String idPetugas;
+    private String idReport;
 
     public Fadmin() {
         initComponents();
@@ -46,6 +47,7 @@ public class Fadmin extends javax.swing.JFrame {
         loadTableMasyarakat();
         cekBtn();
         loadTablePetugas();
+        loadTableReport();
     }
 
     private void btnSection() {
@@ -87,6 +89,7 @@ public class Fadmin extends javax.swing.JFrame {
         panelDashboard.setVisible(false);
         panelDataMasyarakat.setVisible(false);
         panelDataPetugas.setVisible(false);
+        panelReport.setVisible(false);
     }
 
     private void load_table1() {
@@ -112,6 +115,37 @@ public class Fadmin extends javax.swing.JFrame {
 
             // Menyembunyikan kolom "id_pengaduan"
             TableColumnModel tcm = tableIsiLaporan.getColumnModel();
+            tcm.getColumn(1).setMinWidth(0);
+            tcm.getColumn(1).setMaxWidth(0);
+            tcm.getColumn(1).setWidth(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadTableReport() {
+        DefaultTableModel model1 = new DefaultTableModel();
+        tableReport.setModel(model1);
+        model1.addColumn("No");
+        model1.addColumn("id"); // Menambahkan kolom "id" ke dalam model tabel
+        model1.addColumn("username");
+        model1.addColumn("Tanggal Pengiriman");
+        model1.addColumn("Status");
+
+        // Menampilkan data database kedalam tabel
+        try {
+            int no = 1;
+            String sql = "SELECT pengaduan.*, masyarakat.username FROM pengaduan JOIN masyarakat ON pengaduan.id_masyarakat = masyarakat.id_masyarakat";
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model1.addRow(new Object[]{no++, res.getString("id_pengaduan"), res.getString("username"), res.getString("tgl_pengaduan"), res.getString("status")});
+            }
+            tableReport.setModel(model1);
+
+            // Menyembunyikan kolom "id_pengaduan"
+            TableColumnModel tcm = tableReport.getColumnModel();
             tcm.getColumn(1).setMinWidth(0);
             tcm.getColumn(1).setMaxWidth(0);
             tcm.getColumn(1).setWidth(0);
@@ -246,6 +280,37 @@ public class Fadmin extends javax.swing.JFrame {
         }
     }
 
+    private void cariDataReport(String key) {
+        DefaultTableModel model1 = new DefaultTableModel();
+        tableReport.setModel(model1);
+        model1.addColumn("No");
+        model1.addColumn("id"); // Menambahkan kolom "id" ke dalam model tabel
+        model1.addColumn("username");
+        model1.addColumn("Tanggal Pengiriman");
+        model1.addColumn("Status");
+
+        // Menampilkan data database kedalam tabel
+        try {
+            int no = 1;
+            String sql = "SELECT pengaduan.*, masyarakat.username FROM pengaduan JOIN masyarakat ON pengaduan.id_masyarakat = masyarakat.id_masyarakat WHERE masyarakat.username LIKE '%" + key + "%'";
+            java.sql.Connection conn = (Connection) Koneksi.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model1.addRow(new Object[]{no++, res.getString("id_pengaduan"), res.getString("username"), res.getString("tgl_pengaduan"), res.getString("status")});
+            }
+            tableReport.setModel(model1);
+
+            // Menyembunyikan kolom "id_pengaduan"
+            TableColumnModel tcm = tableReport.getColumnModel();
+            tcm.getColumn(1).setMinWidth(0);
+            tcm.getColumn(1).setMaxWidth(0);
+            tcm.getColumn(1).setWidth(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void cariDataMasyarakat(String key2) {
         DefaultTableModel model1 = new DefaultTableModel();
         tableMasyarakat.setModel(model1);
@@ -286,6 +351,34 @@ public class Fadmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelPengaduan = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableIsiLaporan = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_isitanggapan = new javax.swing.JTextArea();
+        btnKirimTanggapan = new javax.swing.JToggleButton();
+        jLabel4 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        isiLaporan = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        fotoLaporan = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableTanggapan = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        btnUnverified = new javax.swing.JButton();
+        btnVerified = new javax.swing.JButton();
+        btnAccept = new javax.swing.JButton();
+        btnR = new javax.swing.JButton();
+        txtCariLaporan = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        panelReport = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tableReport = new javax.swing.JTable();
+        cariReport = new javax.swing.JTextField();
         panelDataPetugas = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -322,29 +415,6 @@ public class Fadmin extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         cariMasyarakat = new javax.swing.JTextField();
-        panelPengaduan = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableIsiLaporan = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_isitanggapan = new javax.swing.JTextArea();
-        btnKirimTanggapan = new javax.swing.JToggleButton();
-        jLabel4 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        isiLaporan = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
-        fotoLaporan = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tableTanggapan = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        btnUnverified = new javax.swing.JButton();
-        btnVerified = new javax.swing.JButton();
-        btnAccept = new javax.swing.JButton();
-        btnR = new javax.swing.JButton();
-        txtCariLaporan = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
         panelDashboard = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -353,10 +423,210 @@ public class Fadmin extends javax.swing.JFrame {
         btnDataPetugas = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton15 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelPengaduan.setBackground(new java.awt.Color(58, 58, 58));
+        panelPengaduan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tableIsiLaporan.setBackground(new java.awt.Color(58, 58, 45));
+        tableIsiLaporan.setForeground(new java.awt.Color(254, 254, 254));
+        tableIsiLaporan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableIsiLaporan.setEnabled(false);
+        tableIsiLaporan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableIsiLaporanMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableIsiLaporan);
+
+        panelPengaduan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 230));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Data Pengaduan Masyarakat");
+        panelPengaduan.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 35, 323, -1));
+
+        txt_isitanggapan.setColumns(20);
+        txt_isitanggapan.setRows(5);
+        jScrollPane2.setViewportView(txt_isitanggapan);
+
+        panelPengaduan.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 439, 452, 65));
+
+        btnKirimTanggapan.setText("Kirim ");
+        btnKirimTanggapan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKirimTanggapanActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnKirimTanggapan, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 516, 105, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Berikan Tanggapan :");
+        panelPengaduan.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 411, 154, -1));
+
+        jButton6.setText("Hapus Tanggapan");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, -1, -1));
+
+        isiLaporan.setColumns(20);
+        isiLaporan.setRows(5);
+        jScrollPane3.setViewportView(isiLaporan);
+
+        panelPengaduan.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 145, 440, 93));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Isi Pengaduan :");
+        panelPengaduan.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 101, 106, 32));
+        panelPengaduan.add(fotoLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 256, 230, 170));
+
+        tableTanggapan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableTanggapan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTanggapanMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tableTanggapan);
+
+        panelPengaduan.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 485, 382, 100));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Tanggapan :");
+        panelPengaduan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 457, 110, -1));
+
+        jButton5.setBackground(new java.awt.Color(255, 0, 51));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 592, 93, -1));
+
+        btnUnverified.setBackground(new java.awt.Color(255, 0, 0));
+        btnUnverified.setForeground(new java.awt.Color(255, 245, 245));
+        btnUnverified.setText("Unverifeid");
+        btnUnverified.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnverifiedActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnUnverified, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 100, -1));
+
+        btnVerified.setBackground(new java.awt.Color(102, 255, 0));
+        btnVerified.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerified.setText("Verified");
+        btnVerified.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerifiedActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnVerified, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 592, 105, -1));
+
+        btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 100, -1));
+
+        btnR.setBackground(new java.awt.Color(223, 223, 223));
+        btnR.setForeground(new java.awt.Color(254, 254, 254));
+        btnR.setText("Reject");
+        btnR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(btnR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 592, 98, -1));
+
+        txtCariLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCariLaporanActionPerformed(evt);
+            }
+        });
+        txtCariLaporan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCariLaporanKeyReleased(evt);
+            }
+        });
+        panelPengaduan.add(txtCariLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 450, 30));
+
+        jButton7.setText("Clear");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        panelPengaduan.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 590, -1, -1));
+
+        getContentPane().add(panelPengaduan, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 1070, 750));
+
+        panelReport.setBackground(new java.awt.Color(58, 58, 58));
+        panelReport.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel18.setText("Report");
+        panelReport.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 190, 40));
+
+        tableReport.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableReportMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tableReport);
+
+        panelReport.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 940, -1));
+
+        cariReport.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariReportKeyReleased(evt);
+            }
+        });
+        panelReport.add(cariReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 370, 40));
+
+        getContentPane().add(panelReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 1070, 750));
 
         panelDataPetugas.setBackground(new java.awt.Color(58, 58, 58));
         panelDataPetugas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -553,168 +823,6 @@ public class Fadmin extends javax.swing.JFrame {
 
         getContentPane().add(panelDataMasyarakat, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 1070, 750));
 
-        panelPengaduan.setBackground(new java.awt.Color(58, 58, 58));
-        panelPengaduan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tableIsiLaporan.setBackground(new java.awt.Color(58, 58, 45));
-        tableIsiLaporan.setForeground(new java.awt.Color(254, 254, 254));
-        tableIsiLaporan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableIsiLaporan.setEnabled(false);
-        tableIsiLaporan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableIsiLaporanMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tableIsiLaporan);
-
-        panelPengaduan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 230));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Data Pengaduan Masyarakat");
-        panelPengaduan.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 35, 323, -1));
-
-        txt_isitanggapan.setColumns(20);
-        txt_isitanggapan.setRows(5);
-        jScrollPane2.setViewportView(txt_isitanggapan);
-
-        panelPengaduan.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 439, 452, 65));
-
-        btnKirimTanggapan.setText("Kirim ");
-        btnKirimTanggapan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKirimTanggapanActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(btnKirimTanggapan, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 516, 105, -1));
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Berikan Tanggapan :");
-        panelPengaduan.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 411, 154, -1));
-
-        jButton6.setText("Hapus Tanggapan");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, -1, -1));
-
-        isiLaporan.setColumns(20);
-        isiLaporan.setRows(5);
-        jScrollPane3.setViewportView(isiLaporan);
-
-        panelPengaduan.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 145, 440, 93));
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Isi Pengaduan :");
-        panelPengaduan.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 101, 106, 32));
-        panelPengaduan.add(fotoLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 256, 230, 170));
-
-        tableTanggapan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableTanggapan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableTanggapanMouseClicked(evt);
-            }
-        });
-        jScrollPane4.setViewportView(tableTanggapan);
-
-        panelPengaduan.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 485, 382, 100));
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Tanggapan :");
-        panelPengaduan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 457, 110, -1));
-
-        jButton5.setBackground(new java.awt.Color(255, 0, 51));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Delete");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 592, 93, -1));
-
-        btnUnverified.setBackground(new java.awt.Color(255, 0, 0));
-        btnUnverified.setForeground(new java.awt.Color(255, 245, 245));
-        btnUnverified.setText("Unverifeid");
-        btnUnverified.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUnverifiedActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(btnUnverified, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 100, -1));
-
-        btnVerified.setBackground(new java.awt.Color(102, 255, 0));
-        btnVerified.setForeground(new java.awt.Color(255, 255, 255));
-        btnVerified.setText("Verified");
-        btnVerified.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerifiedActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(btnVerified, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 592, 105, -1));
-
-        btnAccept.setText("Accept");
-        btnAccept.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcceptActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 100, -1));
-
-        btnR.setBackground(new java.awt.Color(223, 223, 223));
-        btnR.setForeground(new java.awt.Color(254, 254, 254));
-        btnR.setText("Reject");
-        btnR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(btnR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 592, 98, -1));
-
-        txtCariLaporan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCariLaporanActionPerformed(evt);
-            }
-        });
-        txtCariLaporan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCariLaporanKeyReleased(evt);
-            }
-        });
-        panelPengaduan.add(txtCariLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 450, 30));
-
-        jButton7.setText("Clear");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        panelPengaduan.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 590, -1, -1));
-
-        getContentPane().add(panelPengaduan, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 1070, 750));
-
         panelDashboard.setBackground(new java.awt.Color(58, 58, 58));
         panelDashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -779,6 +887,15 @@ public class Fadmin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Back Office");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
+
+        jButton15.setBackground(new java.awt.Color(254, 254, 254));
+        jButton15.setText("Report");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 240, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bgAdmin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
@@ -1288,6 +1405,34 @@ public class Fadmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        iniPanel();
+        panelReport.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void tableReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableReportMouseClicked
+
+        int baris = tableReport.rowAtPoint(evt.getPoint());
+        idReport = tableReport.getValueAt(baris, 1).toString();
+        SessionFlash.setIdPengaduan(idReport);
+        if (SessionFlash.getIdPengaduan() != null) {
+            DetaiReport Detail = new DetaiReport();
+            Detail.setVisible(true);
+        }
+
+    }//GEN-LAST:event_tableReportMouseClicked
+
+    private void cariReportKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariReportKeyReleased
+        String keyReport = cariReport.getText();
+        System.out.println(keyReport);
+
+        if (keyReport != "") {
+            cariDataReport(keyReport);
+        } else {
+            loadTableReport();
+        }
+    }//GEN-LAST:event_cariReportKeyReleased
+
     private boolean isUsernamePetugasUnique(String username) {
         try {
             Connection conn = Koneksi.configDB();
@@ -1370,6 +1515,7 @@ public class Fadmin extends javax.swing.JFrame {
     private javax.swing.JButton btnUnverified;
     private javax.swing.JButton btnVerified;
     private javax.swing.JTextField cariMasyarakat;
+    private javax.swing.JTextField cariReport;
     private javax.swing.JLabel fotoLaporan;
     private javax.swing.JTextArea isiLaporan;
     private javax.swing.JButton jButton1;
@@ -1378,6 +1524,7 @@ public class Fadmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1395,6 +1542,7 @@ public class Fadmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1409,14 +1557,17 @@ public class Fadmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panelDashboard;
     private javax.swing.JPanel panelDataMasyarakat;
     private javax.swing.JPanel panelDataPetugas;
     private javax.swing.JPanel panelPengaduan;
+    private javax.swing.JPanel panelReport;
     private javax.swing.JTable tableIsiLaporan;
     private javax.swing.JTable tableMasyarakat;
     private javax.swing.JTable tablePetugas;
+    private javax.swing.JTable tableReport;
     private javax.swing.JTable tableTanggapan;
     private javax.swing.JTextField txtCariLaporan;
     private javax.swing.JComboBox<String> txtLevel;
